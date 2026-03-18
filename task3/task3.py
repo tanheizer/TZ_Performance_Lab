@@ -11,8 +11,12 @@ def recursive_filling(tests, values):
         for el in tests:
             recursive_filling(el, values)
 
-tests_path = sys.argv[1]
-values_path = sys.argv[2]
+if len(sys.argv) != 4:
+        print("Ошибка: Неверное количество аргументов.")
+        sys.exit(1)
+
+values_path = sys.argv[1]
+tests_path = sys.argv[2]
 report_path = sys.argv[3]
 
 with open(tests_path) as file:
@@ -22,8 +26,6 @@ with open(values_path) as file:
 
 values_dict = {el['id']: el['value'] for el in values_data['values']}
 
-
 recursive_filling(tests_data['tests'], values_dict)
-print(tests_data)
 with open(report_path, 'w') as file:
     json.dump(tests_data, file, indent=1)

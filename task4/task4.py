@@ -1,5 +1,9 @@
 import sys
 
+if len(sys.argv) != 2:
+        print("Ошибка: Неверное количество аргументов.")
+        sys.exit(1)
+
 num_path = sys.argv[1]
 data = []
 with open(num_path) as f:
